@@ -30,5 +30,5 @@ int comma_tok(char *name, char **line, int *p_no)
 		}
 		i++;
 	}
-	return (0);
+	return (n);
 }	
