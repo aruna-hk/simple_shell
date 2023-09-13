@@ -12,6 +12,8 @@
 #define WD "."
 #define CMD_FLAG  1
 #define FILE_FLAG 0
+#define HOME_FLAG 2
+#define PWD_FLAG 3
 #define HOME "/home"
 #define NO_CMD ": not found\n"
 
@@ -26,7 +28,7 @@ struct in_cmd
 typedef struct in_cmd built_ins;
 
 int unset();
-int logic(char *name, char **line, int *p_no);
+int logic(char *name, char **line, int *p_no, int *b_in);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
 
@@ -55,7 +57,7 @@ void err_mesg(char *program, int p_count, char *cmd, int err_no);
 int execute_line(char *p_name, char *f_path, char **arglist, int p_count);
 char *get_file_name(char *a_path);
 CMD *add_begin(CMD **head, char *path);
-int exec_command(char *name, char **line, int *p_count);
+int exec_command(char *name, char **line, int *p_count, int *b_in);
 CMD *add_node(CMD **head, char *tok_);
 char *get_dir(char *shorthand_name, int flag);
 int child_n_exit(char *name, char *line, int *n);

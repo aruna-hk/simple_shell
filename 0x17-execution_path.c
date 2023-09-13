@@ -6,7 +6,7 @@
 * @p_count: pointer to program count
 * Return: 0 or errno
 */
-int exec_command(char *name, char **line, int *p_count)
+int exec_command(char *name, char **line, int *p_count, int *b_in)
 {
 	char **tokens = tokenizer(line, " ");
 	char *f_path, *full_path, *f_name;
@@ -16,8 +16,10 @@ int exec_command(char *name, char **line, int *p_count)
 	(*p_count)++;
 	if (get_built_in(tokens[0]) != NULL)
 	{
+		
 		builtin = get_built_in(tokens[0]);
 		n = builtin(tokens, name, *p_count);
+		*b_in = errno;
 	}
 	else if (*tokens[0] == '/')
 		n = execute_line(name, tokens[0], tokens, *p_count);

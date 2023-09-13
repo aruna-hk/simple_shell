@@ -27,7 +27,7 @@ int cd(char *d_name, char *name, int proc_count, char **to_dir)
 		write(2, del_, strlen(del_));
 		write(2, to_dir[1], strlen(to_dir[1]));
 		write(2, NEWL, strlen(NEWL));
-		return (-1);
+		return (errno);
 	}
 	else
 	{
@@ -67,6 +67,30 @@ char *concat_dir_name(char *current_dir, char *name_ofdir)
 	return (f_path);
 }
 /**
+* dirto - gets directory to change to
+* Return: directory to change to
+*/
+char *dirto(int flag)
+{
+	char *dir_to;
+
+	if (flag == HOME_FLAG)
+	{
+		dir_to = getenv("HOME");
+		if(dir_to == NULL)
+			dir_to = (getenv("PWD"));
+	}
+	else
+	{
+		dir_to = getenv("OLDPWD");
+		if (dir_to == NULL)
+			dir_to = getenv("PWD");
+		write(1, dir_to, strlen(dir_to));
+		write(1, NEWL, strlen(NEWL));
+	}
+	return (dir_to);
+}		
+/**
 * change_dir - changes current working directory
 * @arr: array of arguements
 * @p_name: shell name
@@ -79,13 +103,9 @@ int change_dir(char **arr, char *p_name, int p_count)
 	char *dir_to;
 
 	if (arr[1] == NULL)
-		dir_to = getenv("HOME");
-	else if (strcmp(arr[1], "-") == 0 && arr[2] == NULL)
-	{
-		dir_to = getenv("OLDPWD");
-		write(1, dir_to, strlen(dir_to));
-		write(1, NEWL, strlen(NEWL));
-	}
+		dir_to = dirto(HOME_FLAG);
+	else if (strcmp(arr[1], "-") == 0)
+		dir_to = dirto(PWD_FLAG);
 	else if (strcmp(arr[1], "..") == 0 && arr[2] == NULL)
 	{
 		if (strcmp(getenv("PWD"), PATH) == 0 || strcmp(getenv("PWD"), HOME) == 0)
@@ -112,6 +132,6 @@ int change_dir(char **arr, char *p_name, int p_count)
 	}
 	p =  cd(dir_to, p_name, p_count, arr);
 	if (p == -1)
-		return (-1);
+		return (errno);
 	return (0);
 }
