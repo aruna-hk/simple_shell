@@ -19,7 +19,10 @@ char *print_number(int n)
 		return (NULL);
 	}
 	if (n == 0)
-		return("0");
+	{
+		str_num[0] = '0';
+		str_num[1] = '\0';
+	}
 	else
 	{
 		while (j != 0)

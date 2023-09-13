@@ -5,10 +5,12 @@
 * @s: sign character
 * Return: pointer to operators function/NULL
 */
- int (*get_built_in(char *s))(char **, char *, int)
+int (*get_built_in(char *s))(char **, char *, int)
 {
 	int i = 0;
+
 	built_ins cmds[] = {
+		{"env", _printenv},
 		{"setenv", _setenv},
 		{"cd", change_dir},
 		{'\0', NULL},

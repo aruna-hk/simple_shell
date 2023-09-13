@@ -2,7 +2,7 @@
 
 static char *ptr;
 /**
-* _strtok_- string tokenizer support function
+* _strtok_s- string tokenizer support function
 * @string_del: string to delimit
 * @string: current pos of pointer in string
 * @delim: delimitor

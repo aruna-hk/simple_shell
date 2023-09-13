@@ -1,9 +1,10 @@
 #include "main.h"
 /**
 * _printenv - print environment variables
+* @arr: array os arguements strings
 * Return: 0-sucess
 */
-int _printenv(char **arr)
+int _printenv(char **arr, char *sh_name, int p_count)
 {
 	int i = 0;
 

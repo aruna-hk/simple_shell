@@ -3,3 +3,4 @@ allowed_functions
 runchecker.bash
 a.out
 hsh
+*.bash

@@ -9,13 +9,12 @@
 
 #define PATH "/"
 #define P_PWD ".."
-#define P_W_D "."
+#define WD "."
 #define CMD_FLAG  1
 #define FILE_FLAG 0
 #define HOME "/home"
 #define NO_CMD ": not found\n"
 
-int comma_tok(char *name, char **line, int *p_no);
 #define NEWL "\n"
 extern char **environ;
 
@@ -26,7 +25,8 @@ struct in_cmd
 };
 typedef struct in_cmd built_ins;
 
-
+int unset();
+int logic(char *name, char **line, int *p_no);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
 
@@ -36,7 +36,7 @@ void comma_cmds(char **line, int *p_count, char *name);
 int create_child(char **arr, int *p_count, char *name, int *c_id, int p_ret);
 char *_strtok(char *string, const char *delim);
 int (*get_built_in(char *s))(char **, char *, int);
-int _printenv(char **arr);
+int _printenv(char **arr, char *sh_name, int p_count);
 int _setenv(char **arr, char *p_name, int p_count);
 int change_dir(char **arr, char *p_name, int p_count);
 

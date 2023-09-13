@@ -19,6 +19,7 @@ char *get_f_path(char *name, int flag)
 	strcpy(full_path, dir);
 	strcat(full_path, "/");
 	strcat(full_path, name_);
+	free(name_);
 	return (full_path);
 }
 /**
@@ -45,6 +46,7 @@ void openerr(char *prog_name, int p_count, char *filename)
 	n = write(2, err_msg, strlen(err_msg));
 	if (n == -1)
 		perror("err_msg");
+	free(num);
 	free(err_msg);
 }
 /**
@@ -53,23 +55,27 @@ void openerr(char *prog_name, int p_count, char *filename)
 * @arglist: arguement list
 * Return: 0-sucess /exit status
 */
-int main(int args, char **arglist)
+int main(int args, char **arglist, char **env)
 {
 	int open_home, p_count = 0, fd, n;
 	char **homeset;
 	char *full_path;
 	char *homedir = set_home();
 
-	open_home = chdir(homedir);
-	if (open_home == -1)
-		perror("can't set up home directory");
-	homeset = malloc(sizeof(char *) * 4);
-	homeset[0] = "setenv";
-	homeset[1] = "PWD";
-	homeset[2] = homedir;
-	homeset[3] = NULL;
-	_setenv(homeset, arglist[0], p_count);
-	free(homeset);
+	dprintf(STDOUT_FILENO, "%d=\n", getpid());
+	if (homedir != NULL)
+	{
+		open_home = chdir(homedir);
+		if (open_home == -1)
+			perror("can't set up home directory");
+		homeset = malloc(sizeof(char *) * 4);
+		homeset[0] = "setenv";
+		homeset[1] = "PWD";
+		homeset[2] = homedir;
+		homeset[3] = NULL;
+		_setenv(homeset, arglist[0], p_count);
+		free(homeset);
+	}
 	if (args >= 2)
 	{
 		full_path = get_f_path(arglist[1], FILE_FLAG);
@@ -77,7 +83,7 @@ int main(int args, char **arglist)
 		if (fd == -1)
 		{
 			openerr(arglist[0], p_count, arglist[1]);
-			return (-1);
+			return (errno);
 		}
 		dup2(fd, STDIN_FILENO);
 	}

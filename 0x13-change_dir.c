@@ -1,6 +1,11 @@
 #include "main.h"
 /**
 * cd - change directory
+* @d_name: directory to change to
+* @name: shell_name
+* @proc_count: process count
+* @to_dir: arr of cd arguements
+* Return: -1 failure/0-sucess
 */
 int cd(char *d_name, char *name, int proc_count, char **to_dir)
 {
@@ -41,6 +46,12 @@ int cd(char *d_name, char *name, int proc_count, char **to_dir)
 	}
 	return (0);
 }
+/**
+* concat_dir_name - get full_directory name to change to
+* @current_dir: current dir
+* @name_ofdir: arguement name
+* Return: directory full path
+*/
 char *concat_dir_name(char *current_dir, char *name_ofdir)
 {
 	char *f_path;
@@ -58,6 +69,9 @@ char *concat_dir_name(char *current_dir, char *name_ofdir)
 /**
 * change_dir - changes current working directory
 * @arr: array of arguements
+* @p_name: shell name
+* @p_count: process count
+* Return: 0- sucess -1 faiulure
 */
 int change_dir(char **arr, char *p_name, int p_count)
 {
@@ -72,7 +86,7 @@ int change_dir(char **arr, char *p_name, int p_count)
 		write(1, dir_to, strlen(dir_to));
 		write(1, NEWL, strlen(NEWL));
 	}
-	else if(strcmp(arr[1], "..") == 0 && arr[2] == NULL)
+	else if (strcmp(arr[1], "..") == 0 && arr[2] == NULL)
 	{
 		if (strcmp(getenv("PWD"), PATH) == 0 || strcmp(getenv("PWD"), HOME) == 0)
 			dir_to = PATH;
@@ -100,4 +114,4 @@ int change_dir(char **arr, char *p_name, int p_count)
 	if (p == -1)
 		return (-1);
 	return (0);
-}	
+}

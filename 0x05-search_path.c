@@ -2,16 +2,22 @@
 /**
 * search_path - search file in system path
 * @name: name of file
-* Return : file path/ NULL
+* Return: file path/ NULL
 */
 char *search_path(char *name)
 {
-	struct stat *file_d; 
+	struct stat *file_d;
 	char *env_p = getenv("PATH");
 
 	char *f_tok, *path;
 
 	name[strlen(name)] = '\0';
+
+	if (env_p == NULL)
+	{
+		errno = 2;
+		return (NULL);
+	}
 	file_d = malloc(sizeof(struct stat));
 	f_tok = _strtok(strdup(env_p), ":");
 	while (f_tok != NULL)
@@ -33,4 +39,4 @@ char *search_path(char *name)
 	free(file_d);
 	free(f_tok);
 	return (NULL);
-} 
+}

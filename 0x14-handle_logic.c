@@ -1,7 +1,12 @@
 #include "main.h"
 /**
-**/
-int comma_tok(char *name, char **line, int *p_no)
+* logic -  handle cmd arguemen logic
+* @name: shell name
+* @line: address of read line
+* @p_no: program number
+* Return: 0-sucess/ erro no failure
+*/
+int logic(char *name, char **line, int *p_no)
 {
 	int i = 0, j = 0, l = 0;
 	int n;
@@ -31,4 +36,4 @@ int comma_tok(char *name, char **line, int *p_no)
 		i++;
 	}
 	return (n);
-}	
+}

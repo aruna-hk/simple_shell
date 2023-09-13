@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+* exit_no - get the exit number
+* @num: string number arguemrnt
+* Return: int exit number
+*/
 int exit_no(char *num)
 {
 	int i = 0;
@@ -11,18 +16,27 @@ int exit_no(char *num)
 	}
 	return (atoi(num));
 }
+/**
+* p_e_error - display exit error msg
+* @name: shell_name
+* @p_no: process number
+* @il_no: illegal string exit
+*/
 void p_e_error(char *name, int p_no, char **il_no)
 {
-	char *num = print_number(p_no);
+	char *num = print_number(p_no), *err;
 
-	int len = strlen(name) + strlen(num) + strlen(il_no[0]) + strlen(il_no[1]) + 30;
-	char *err = malloc(len);
+	int len = strlen(name) + strlen(num) + strlen(il_no[0]);
+
+	len = len + strlen(il_no[1]) + 30;
+
+	err = malloc(len);
 
 	err[0] = '\0';
 
 	strcpy(err, name);
 	strcat(err, ": ");
-	strcat(err, num);	
+	strcat(err, num);
 	strcat(err, ": ");
 	strcat(err, il_no[0]);
 	strcat(err, ": ");
@@ -35,14 +49,19 @@ void p_e_error(char *name, int p_no, char **il_no)
 	free(err);
 }
 /**
-* create_child() - create child process is ar == name
+* create_child - create child process is ar == name
 * of the program
 * Also exit the program
 * @arr: array of command tokens
+* @p_count: process count
+* @name: shell_name
+* @c_id: child identifiers
+* @p_ret: previous return
+* Return: interger 0 -sucess otherwise failure
 */
 int create_child(char **arr, int *p_count, char *name, int *c_id, int p_ret)
 {
-	static int prev_p_count = 0;
+	static int prev_p_count;
 	pid_t child;
 	int signal, n;
 
@@ -57,7 +76,7 @@ int create_child(char **arr, int *p_count, char *name, int *c_id, int p_ret)
 			*p_count  = 0;
 			(*c_id)++;
 		}
-		return (1);
+		return (0);
 	}
 	else if (strcmp(arr[0], "exit") == 0)
 	{
@@ -79,7 +98,7 @@ int create_child(char **arr, int *p_count, char *name, int *c_id, int p_ret)
 			*p_count = prev_p_count;
 			prev_p_count = 0;
 			exit(n);
-		}	
+		}
 	}
 	return (2);
 }

@@ -1,6 +1,10 @@
 #include "main.h"
 /**
-* set_variables - set pwd and olpwd after opening a directory
+* _setenv - set pwd and olpwd after opening a directory
+* @arr: array of arguements
+* @p_name: shell name
+* @p_count: process count
+* Return: 0-sucess -1 failure
 */
 int _setenv(char **arr, char *p_name, int p_count)
 {
@@ -10,17 +14,6 @@ int _setenv(char **arr, char *p_name, int p_count)
 	new = malloc(strlen(arr[1]) + strlen(arr[2]) + 3);
 	if (new == NULL)
 		return (-1);
-	while (arr[i] != NULL)
-		i++;
-	if (i < 3)
-	{
-		char *num = print_number(p_count);
-		write(2, p_name, strlen(p_name));
-		write(2, num, strlen(num));
-		write(2, NEWL, strlen(NEWL));
-		return (-1);
-	}
-	i = 0;
 	new[0] = '\0';
 	strcpy(new, arr[1]);
 	strcat(new, "=");

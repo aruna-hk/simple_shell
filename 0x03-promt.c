@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+* return_code - check errno and return corresponding return code
+* @n: errno from callong function
+* Return: calling function return code
+*/
 int return_code(int n)
 {
 	if (n == 0)
@@ -8,12 +13,14 @@ int return_code(int n)
 	return (127);
 }
 /**
-* _start_promt - shell entry point
+* _start_prompt - shell entry point
 * @name:number of arguements
+* @p_count: process count
+* Return: 0/errno
 */
 int _start_prompt(char *name, int *p_count)
 {
-	static int prev_return = 0;
+	static int prev_return;
 	char *line = NULL;
 	ssize_t nread;
 	size_t r_read;
@@ -36,8 +43,9 @@ int _start_prompt(char *name, int *p_count)
 		line[nread - 1] = '\0';
 		while (*line == ' ')
 			line++;
-		if (*line == '\0')
+		if (*line == '\0' || *line == '#')
 			continue;
+		line = strtok(line, "#");
 		first_s = _strtok(strdup(line), " ");
 		if (strcmp(first_s, name) == 0 || strcmp(first_s, "exit") == 0)
 		{
@@ -45,7 +53,7 @@ int _start_prompt(char *name, int *p_count)
 			n = create_child(arr, p_count, name, &child_id, prev_return);
 			continue;
 		}
-		n = comma_tok(name, &line, p_count);
+		n = logic(name, &line, p_count);
 		prev_return = n;
 		n = return_code(n);
 	}
