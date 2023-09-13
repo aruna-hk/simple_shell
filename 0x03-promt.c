@@ -4,8 +4,10 @@
 * @n: errno from callong function
 * Return: calling function return code
 */
-int return_code(int n)
+int return_code(int n, int *b_in)
 {
+	if (*b_in != 0)
+		return (*b_in);
 	if (n == 0)
 		return (0);
 	else if (n == 13)
@@ -25,7 +27,7 @@ int _start_prompt(char *name, int *p_count)
 	ssize_t nread;
 	size_t r_read;
 	char *p_string, *first_s, **arr;
-	int child_id = 0, n = 0;
+	int child_id = 0, n = 0, b_in = 0;
 
 	while (1)
 	{
@@ -53,9 +55,9 @@ int _start_prompt(char *name, int *p_count)
 			n = create_child(arr, p_count, name, &child_id, prev_return);
 			continue;
 		}
-		n = logic(name, &line, p_count);
+		n = logic(name, &line, p_count, &b_in);
 		prev_return = n;
-		n = return_code(n);
+		n = return_code(n, &b_in);
 	}
 	return (n);
 }

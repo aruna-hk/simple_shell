@@ -62,7 +62,6 @@ int main(int args, char **arglist, char **env)
 	char *full_path;
 	char *homedir = set_home();
 
-	dprintf(STDOUT_FILENO, "%d=\n", getpid());
 	if (homedir != NULL)
 	{
 		open_home = chdir(homedir);
