@@ -19,7 +19,7 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 		
 		builtin = get_built_in(tokens[0]);
 		n = builtin(tokens, name, *p_count);
-		*b_in = errno;
+		*b_in = 0;
 	}
 	else if (*tokens[0] == '/')
 		n = execute_line(name, tokens[0], tokens, *p_count);
