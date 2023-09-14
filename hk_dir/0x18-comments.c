@@ -4,14 +4,16 @@
 * @line: line pointer
 * Return: string
 */
-char *remov_comment(char **line)
+char *remov_comment(char **line, int nread)
 {
-	char *cm = strdup(*line);
+	char *clean;
 	int i = 0;
 
-	if (*line[i] == '#')
-		return (NULL);
+	char *cm;
 
+	cm = strdup(*line);
+	if (*cm == '#')
+		return (NULL);
 	while(*cm != '\0')
 	{
 		if (*cm == '#')
@@ -19,9 +21,12 @@ char *remov_comment(char **line)
 			cm--;
 			if (*cm != ' ')
 				return (*line);
-			return (strtok(*line, "#"));
+			clean = strtok(*line, "#");
+			if (clean[strlen(clean) - 1]  == ' ')
+				clean[strlen(clean) - 1] = '\0';
+			return (clean);
 		}
 		cm++;
 	}
-	return (NULL);
+	return (*line);
 }
