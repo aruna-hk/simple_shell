@@ -1,4 +1,0 @@
-pwd || ls /tmp
-dsds || ls
-pwd && echo kk
-dddf
