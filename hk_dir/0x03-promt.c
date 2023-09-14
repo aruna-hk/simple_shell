@@ -45,9 +45,11 @@ int _start_prompt(char *name, int *p_count)
 		line[nread - 1] = '\0';
 		while (*line == ' ')
 			line++;
-		if (*line == '\0' || *line == '#')
+		if (*line == '\0')
 			continue;
-		line = strtok(line, "#");
+		line = remov_comment(&line);
+		if (line == NULL)
+			continue;
 		first_s = _strtok(strdup(line), " ");
 		if (strcmp(first_s, name) == 0 || strcmp(first_s, "exit") == 0)
 		{
