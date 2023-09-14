@@ -31,16 +31,18 @@ int logic(char *name, char **line, int *p_no, int *b_in)
 					break;
 				l++;
 			}
-			if (n != 0 && tok[i + 1] == NULL)
+			if (n != 0 && tok_[j + 1] != NULL && tok[i + 1] == NULL)
 			{
-				f = 1;
+				*b_in = n;
 				break;
 			}
 			j++;
+			
+		
 		}
 		i++;
 	}
-	if (n != 0 && i > 1 || (f == 1 && c != 0))
+	if (n != 0 && (i > 1 || j > 1 || l > 1))
 		*b_in = n;
 	return (n);
 }
