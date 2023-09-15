@@ -47,7 +47,7 @@ int _start_prompt(char *name, int *p_count)
 			line++;
 		if (*line == '\0')
 			continue;
-		line = remov_comment(&line, nread);
+		line = remov_comment(&line);
 		if (line == NULL)
 			continue;
 		first_s = _strtok(strdup(line), " ");

@@ -4,10 +4,9 @@
 * @line: line pointer
 * Return: string
 */
-char *remov_comment(char **line, int nread)
+char *remov_comment(char **line)
 {
 	char *clean;
-	int i = 0;
 	char *cm;
 
 	cm = strdup(*line);

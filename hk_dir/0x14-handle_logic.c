@@ -8,13 +8,12 @@
 */
 int logic(char *name, char **line, int *p_no, int *b_in)
 {
-	int i = 0, j = 0, l = 0, f = 0, c, n;
+	int i = 0, j = 0, l = 0, n;
 	char **tok;
 	char **tok_;
 	char **or_tok;
 
 	tok = tokenizer(line, ";");
-	c = strcmp(*line, *tok);
 	while (tok[i] != NULL)
 	{
 		errno = 0;

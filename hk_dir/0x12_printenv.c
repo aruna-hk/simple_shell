@@ -6,14 +6,22 @@
 */
 int _printenv(char **arr, char *sh_name, int p_count)
 {
-	int i = 0;
+	int i = 0, n;
+	char *num, *del = ": ";
 
 	arr = environ;
-
 	while (arr[i] != NULL)
 	{
-		write(1, arr[i], strlen(arr[i]));
-		write(1, NEWL, strlen(NEWL));
+		n = write(1, arr[i], strlen(arr[i]));
+		n = write(1, NEWL, strlen(NEWL));
+		if (n == -1)
+		{
+			num = print_number(p_count);
+			write(2, sh_name, strlen(sh_name));
+			write(2, del, strlen(del));
+			write(2, num, strlen(num));
+			perror(NULL);
+		}
 		i++;
 	}
 	return (0);

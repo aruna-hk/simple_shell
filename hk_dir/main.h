@@ -39,7 +39,7 @@ struct alias_cmd
 };
 typedef struct alias_cmd ALIAS;
 int unset();
-char *remov_comment(char **line, int nread);
+char *remov_comment(char **line);
 int logic(char *name, char **line, int *p_no, int *b_in);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);

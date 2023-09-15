@@ -7,8 +7,6 @@
  */
 size_t print_list(const ALIAS *head)
 {
-	size_t len;
-
 	if (head == NULL)
 		return (0);
 	while (head != NULL)

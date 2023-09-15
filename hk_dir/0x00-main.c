@@ -55,7 +55,7 @@ void openerr(char *prog_name, int p_count, char *filename)
 * @arglist: arguement list
 * Return: 0-sucess /exit status
 */
-int main(int args, char **arglist, char **env)
+int main(int args, char **arglist)
 {
 	int open_home, p_count = 0, fd, n;
 	char **homeset;

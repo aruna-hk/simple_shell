@@ -1,20 +1,4 @@
 #include "main.h"
-static ALIAS *commands = NULL;
-
-void *check_if_alias_present(char ***cmd, ALIAS *com)
-{
-        int i = 0;
-
-        while (com != NULL)
-        {
-                if (strcmp((com->aliaas), *cmd[i]) == 0)
-                {
-                        *cmd[i] = com->r_cmd;
-                }
-                com = com->next;
-        }
-}
-
 /**
 * exec_command - tokenize command and pass the command array to execve
 * @name: shell_name
@@ -29,7 +13,6 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 	int n;
 	int (*builtin)(char **, char *, int);
 
-	check_if_alias_present(&tokens, commands);
 	(*p_count)++;
 	if (get_built_in(tokens[0]) != NULL)
 	{
@@ -60,52 +43,4 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 		}
 	}
 	return (n);
-}
-/**
-* alias_ - create alias
-* @arr: array of arguements
-*/
-int alias_(char **arr, char *p_name, int p_count)
-{
-        char **arr2;
-        char *err_del = ": ";
-	int i = 0;
-        char *err_msg = "not_found";
-
-	if (arr[1] == NULL)
-		return(print_list(commands));
-        arr2 = tokenizer(&arr[1], "=");
-        if (arr2[1] == NULL)
-        {
-                while (commands != NULL)
-                {
-                        if (strcmp(commands->aliaas, arr2[1]) == 0)  
-                        {
-                                write(1, commands->aliaas, strlen(commands->aliaas));
-                                write(1, ALIAS_DEL, strlen(ALIAS_DEL));
-                                write(1, commands->r_cmd, strlen(commands->r_cmd));
-                                write(1, NEWL, strlen(NEWL));
-                        }
-                        commands = commands->next;
-                }
-                write(1, arr[0], strlen(arr2[0]));
-                write(1, err_del, strlen(err_del));
-                write(1, err_msg, strlen(err_msg));
-                write(1, NEWL, strlen(NEWL));
-        }
-        else
-	{
-		while (commands != NULL)
-		{
-			if (strcmp(commands->aliaas, arr2[1]) == 0)
-			{
-				commands->aliaas = arr2[0];
-				return (0);
-			}
-			commands = commands->next;
-			i++;
-		}
-                commands = add_ALIAS(&commands, arr2[0], arr2[1]);
-	}
-        return (0);
 }
