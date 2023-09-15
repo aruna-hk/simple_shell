@@ -8,7 +8,6 @@ char *remov_comment(char **line, int nread)
 {
 	char *clean;
 	int i = 0;
-
 	char *cm;
 
 	cm = strdup(*line);
@@ -21,10 +20,14 @@ char *remov_comment(char **line, int nread)
 			cm--;
 			if (*cm != ' ')
 				return (*line);
-			clean = strtok(*line, "#");
-			if (clean[strlen(clean) - 1]  == ' ')
-				clean[strlen(clean) - 1] = '\0';
-			return (clean);
+			else
+			{
+				clean = strtok(*line, "#");
+				if (clean[strlen(clean) - 1]  == ' ')
+					clean[strlen(clean) - 1] = '\0';
+				return (clean);
+			}
+			
 		}
 		cm++;
 	}

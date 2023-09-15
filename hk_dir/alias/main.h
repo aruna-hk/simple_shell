@@ -10,7 +10,6 @@
 #define PATH "/"
 #define P_PWD ".."
 #define WD "."
-#define Q "'"
 #define CMD_FLAG  1
 #define ALIAS_DEL "="
 #define FILE_FLAG 0
@@ -29,26 +28,18 @@ struct in_cmd
 };
 typedef struct in_cmd built_ins;
 
-
-
 struct alias_cmd
 {
-	char *aliaas;
-	char *r_cmd;
+	char *aliaas = NULL;
+	char *r_cmd = NULL;
 	struct alias_cmd *next;
-};
+}
 typedef struct alias_cmd ALIAS;
 int unset();
 char *remov_comment(char **line, int nread);
 int logic(char *name, char **line, int *p_no, int *b_in);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
-
-int alias_(char **arr, char *p_name, int p_count);
-size_t print_list(const ALIAS *head);
-ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp);
-int delete_node(ALIAS **head, unsigned int index);
-void *check_if_alias_present(char ***cmd, ALIAS *cmds);
 
 
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);

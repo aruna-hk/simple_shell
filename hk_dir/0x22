@@ -1,0 +1,16 @@
+#include "main.h"
+
+void *check_if_alias_present(char ***cmd, ALIAS *cmds)
+{
+	int i = 0;
+
+        while (cmd != NULL)
+        {
+                if (strcmp(cmd->aliaas, **cmd[i]) == 0)
+		{
+			**cmd[i] = cmds->r_cmd;
+		}
+                cmd = cmd->next;
+        }
+}
+
