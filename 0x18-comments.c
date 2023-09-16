@@ -9,6 +9,7 @@ char *remov_comment(char **line)
 	char *clean;
 	char *cm;
 
+	clean = *line;
 	cm = strdup(*line);
 	if (*cm == '#')
 		return (NULL);
@@ -18,17 +19,21 @@ char *remov_comment(char **line)
 		{
 			cm--;
 			if (*cm != ' ')
-				return (*line);
+			{
+				clean = *line;
+				break;
+			}
 			else
 			{
 				clean = strtok(*line, "#");
 				if (clean[strlen(clean) - 1]  == ' ')
 					clean[strlen(clean) - 1] = '\0';
-				return (clean);
+				break;
 			}
 			
 		}
 		cm++;
 	}
-	return (*line);
+	clean = variable(clean);
+	return (clean);
 }

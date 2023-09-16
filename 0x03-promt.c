@@ -6,13 +6,27 @@
 */
 int return_code(int n, int *b_in)
 {
+
 	if (*b_in != 0)
 		return (*b_in);
-	if (n == 0)
+	else if (n ==0)
 		return (0);
 	else if (n == 13)
 		return (126);
 	return (127);
+}
+int set_p_exit(int n, char *name, int p_count)
+{
+	char **m;
+
+	m = malloc(sizeof(char *) * 4);
+	m[0] = "setenv";
+	m[1] = "?";
+	m[2] = print_number(n);
+	m[3] = NULL;
+	_setenv(m, name, p_count);
+	free(m);
+	return (n);
 }
 /**
 * _start_prompt - shell entry point
@@ -58,6 +72,7 @@ int _start_prompt(char *name, int *p_count)
 			continue;
 		}
 		n = logic(name, &line, p_count, &b_in);
+		n = set_p_exit(n, name, *p_count);
 		prev_return = n;
 		n = return_code(n, &b_in);
 	}
