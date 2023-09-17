@@ -58,10 +58,9 @@ void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
 
 int alias_(char **arr, char *p_name, int p_count);
-size_t print_list(const ALIAS *head);
 ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp);
 int delete_node(ALIAS **head, unsigned int index);
-void *check_if_alias_present(char ***cmd, ALIAS *cmds);
+ char *check_if_alias(char *cmd);
 
 
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);

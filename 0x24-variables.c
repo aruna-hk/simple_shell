@@ -16,13 +16,8 @@ char *variable(char *line)
 		if (*line == '$')
 		{
 			line++;
-			if (*line ==' ' || *line == '\0')
-				line--;
-			else if (*line == '$')
-			{
-				env = getenv("PID");
-				line++;
-			}
+			if (*line == '$')
+				env = print_number(getpid());
 			else
 			{
 				while (*line != '\0' && *line != ' ' && *line != '$')

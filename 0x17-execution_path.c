@@ -14,6 +14,8 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 	int n;
 	int (*builtin)(char **, char *, int);
 
+	if (check_if_alias(tokens[0]) != NULL)
+		tokens[0] = check_if_alias(tokens[0]);
 	(*p_count)++;
 	if (get_built_in(tokens[0]) != NULL)
 	{

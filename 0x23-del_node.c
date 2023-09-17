@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* delete_nodeint_at_index - delete node at give index
+* delete_node - delete node at give index
 * @head: ptr to head double
 * @index: index to insert
 * Return:1-sucess/-1 failure
