@@ -1,3 +1,5 @@
+#ifndef SHELL_HEADER
+#define SHELL_HEADER
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -22,6 +24,11 @@
 #define NEWL "\n"
 extern char **environ;
 
+/**
+* struct in_cmd - built in commands
+* @cmd_name: - command_name
+* @cmd: pinter to a function
+*/
 struct in_cmd
 {
 	char *cmd_name;
@@ -30,7 +37,11 @@ struct in_cmd
 typedef struct in_cmd built_ins;
 
 
-
+/*
+* struct alias_cmd - alias commands structure
+* @aliaas: alias cmd name
+* @r_cmd: real command name
+*/
 struct alias_cmd
 {
 	char *aliaas;
@@ -38,7 +49,7 @@ struct alias_cmd
 	struct alias_cmd *next;
 };
 typedef struct alias_cmd ALIAS;
-int unset();
+int unset(void);
 char *variable(char *line);
 
 char *remov_comment(char **line);
@@ -63,6 +74,11 @@ int _setenv(char **arr, char *p_name, int p_count);
 int change_dir(char **arr, char *p_name, int p_count);
 
 char *get_f_path(char *name, int flag);
+/**
+* cmd_tokes - tokenizer structure
+* @cmd_name: command name token
+* @next: arguements
+*/
 struct cmd_tokens
 {
 	char *cmd_name;
@@ -89,3 +105,4 @@ char **tokenizer(char **string, const char *delimiter);
 
 int _start_prompt(char *name, int *p_count);
 char *set_home(void);
+#endif

@@ -75,13 +75,6 @@ int main(int args, char **arglist)
 		_setenv(homeset, arglist[0], p_count);
 		free(homeset);
 	}
-	homeset = malloc(sizeof(char *) * 4);
-	homeset[0] = "setenv";
-	homeset[1] = "PID";
-	homeset[2] = print_number(getppid());
-	homeset[3] = NULL;
-	_setenv(homeset, arglist[0], p_count);
-	free(homeset);
 	if (args >= 2)
 	{
 		full_path = get_f_path(arglist[1], FILE_FLAG);

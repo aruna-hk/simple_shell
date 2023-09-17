@@ -2,6 +2,7 @@
 /**
 * return_code - check errno and return corresponding return code
 * @n: errno from callong function
+* @b_in: check if built in cmd
 * Return: calling function return code
 */
 int return_code(int n, int *b_in)
@@ -9,12 +10,19 @@ int return_code(int n, int *b_in)
 
 	if (*b_in != 0)
 		return (*b_in);
-	else if (n ==0)
+	else if (n == 0)
 		return (0);
 	else if (n == 13)
 		return (126);
 	return (127);
 }
+/**
+* set_p_exit - set privious exit environment variable
+* @n: previous exit status
+* @name: shell name
+* @p_count: process count
+* Return: exit status
+*/
 int set_p_exit(int n, char *name, int p_count)
 {
 	char **m;
@@ -30,17 +38,16 @@ int set_p_exit(int n, char *name, int p_count)
 }
 /**
 * _start_prompt - shell entry point
-* @name:number of arguements
+* @name: number of arguements
 * @p_count: process count
 * Return: 0/errno
 */
 int _start_prompt(char *name, int *p_count)
 {
 	static int prev_return;
-	char *line = NULL;
 	ssize_t nread;
 	size_t r_read;
-	char *p_string, *first_s, **arr;
+	char *p_string, *first_s, **arr, *line = NULL;
 	int child_id = 0, n = 0, b_in = 0;
 
 	while (1)

@@ -4,6 +4,7 @@
 * @name: shell_name
 * @line: pointer to read_line
 * @p_count: pointer to program count
+* @b_in: inbuilt command identifier
 * Return: 0 or errno
 */
 int exec_command(char *name, char **line, int *p_count, int *b_in)
@@ -16,7 +17,6 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 	(*p_count)++;
 	if (get_built_in(tokens[0]) != NULL)
 	{
-		
 		builtin = get_built_in(tokens[0]);
 		n = builtin(tokens, name, *p_count);
 		*b_in = 0;

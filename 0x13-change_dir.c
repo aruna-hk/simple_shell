@@ -68,6 +68,7 @@ char *concat_dir_name(char *current_dir, char *name_ofdir)
 }
 /**
 * dirto - gets directory to change to
+* @flag: to det env in env variables
 * Return: directory to change to
 */
 char *dirto(int flag)
@@ -77,7 +78,7 @@ char *dirto(int flag)
 	if (flag == HOME_FLAG)
 	{
 		dir_to = getenv("HOME");
-		if(dir_to == NULL)
+		if (dir_to == NULL)
 			dir_to = (getenv("PWD"));
 	}
 	else
@@ -89,7 +90,7 @@ char *dirto(int flag)
 		write(1, NEWL, strlen(NEWL));
 	}
 	return (dir_to);
-}		
+}
 /**
 * change_dir - changes current working directory
 * @arr: array of arguements

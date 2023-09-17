@@ -1,4 +1,10 @@
 #include "main.h"
+/**
+* _usage_erro - usage error for builit in setenv
+* @p: process count
+* @name: shell name
+* @cmd: command name
+*/
 void _usage_erro(int p, char *name, char *cmd)
 {
 	char *err_del = ": ", *err_usage = "usage VAIABLE", *set_ = "VALUE";
@@ -27,7 +33,7 @@ int _setenv(char **arr, char *p_name, int p_count)
 	new = malloc(strlen(arr[1]) + strlen(arr[2]) + 3);
 	if (new == NULL)
 		return (-1);
-	if (arr[1] == NULL|| arr[2] == NULL)
+	if (arr[1] == NULL || arr[2] == NULL)
 	{
 		_usage_erro(p_count, p_name, arr[0]);
 		return (-1);

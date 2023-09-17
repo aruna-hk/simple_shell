@@ -2,7 +2,8 @@
 /**
 * add_node -add node at the end of list
 * @head:double ptr to the head
-* @tok_: data part of the new node
+* @al_name: alias name
+* @al_rp: alias real program  name
 * Return: ptr to new node/null
 */
 ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp)

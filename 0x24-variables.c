@@ -16,7 +16,9 @@ char *variable(char *line)
 		if (*line == '$')
 		{
 			line++;
-			if (*line == '$')
+			if (*line ==' ' || *line == '\0')
+				line--;
+			else if (*line == '$')
 			{
 				env = getenv("PID");
 				line++;

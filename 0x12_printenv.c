@@ -2,6 +2,8 @@
 /**
 * _printenv - print environment variables
 * @arr: array os arguements strings
+* @sh_name: shell name
+* @p_count: process count
 * Return: 0-sucess
 */
 int _printenv(char **arr, char *sh_name, int p_count)

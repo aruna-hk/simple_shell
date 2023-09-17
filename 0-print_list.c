@@ -2,7 +2,7 @@
 /**
  * print_list - print content of linked list and
  * return the number of nodes
- * @h: list pinter
+ * @head: list pinter
  * Return: number of nodes
  */
 size_t print_list(const ALIAS *head)

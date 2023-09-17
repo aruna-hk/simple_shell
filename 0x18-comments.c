@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* remove_comment - remove comment from a line
+* remov_comment - remove comment from a line
 * @line: line pointer
 * Return: string
 */
@@ -13,7 +13,7 @@ char *remov_comment(char **line)
 	cm = strdup(*line);
 	if (*cm == '#')
 		return (NULL);
-	while(*cm != '\0')
+	while (*cm != '\0')
 	{
 		if (*cm == '#')
 		{
@@ -30,7 +30,6 @@ char *remov_comment(char **line)
 					clean[strlen(clean) - 1] = '\0';
 				break;
 			}
-			
 		}
 		cm++;
 	}

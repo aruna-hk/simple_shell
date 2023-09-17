@@ -4,6 +4,7 @@
 * @name: shell name
 * @line: address of read line
 * @p_no: program number
+* @b_in: built in identifier
 * Return: 0-sucess/ erro no failure
 */
 int logic(char *name, char **line, int *p_no, int *b_in)
@@ -36,8 +37,6 @@ int logic(char *name, char **line, int *p_no, int *b_in)
 				break;
 			}
 			j++;
-			
-		
 		}
 		i++;
 	}
