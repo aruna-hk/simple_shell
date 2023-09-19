@@ -28,9 +28,7 @@ char *_strtok(char *str, const char *del)
 	char *tok;
 	char cp[2];
 
-	int len = strlen(del);
 
-	int i = 0;
 
 	tok = malloc(1);
 	tok[0] = '\0';
@@ -48,7 +46,7 @@ char *_strtok(char *str, const char *del)
 		if (chec_if_del(*str, del) == 0)
 		{
 			while (chec_if_del(*str, del) == 0)
-				*str++;
+				str++;
 			pos_string = str;
 			return (tok);
 		}

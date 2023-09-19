@@ -25,7 +25,7 @@ char *remov_comment(char **line)
 			}
 			else
 			{
-				clean = strtok(*line, "#");
+				clean = _strtok(*line, "#");
 				if (clean[strlen(clean) - 1]  == ' ')
 					clean[strlen(clean) - 1] = '\0';
 				break;

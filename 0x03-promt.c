@@ -71,7 +71,7 @@ int _start_prompt(char *name, int *p_count)
 		line = remov_comment(&line);
 		if (line == NULL)
 			continue;
-		first_s = _strtok(strdup(line), " ");
+		first_s = strtok(strdup(line), " ");
 		if (strcmp(first_s, name) == 0 || strcmp(first_s, "exit") == 0)
 		{
 			arr = tokenizer(&line, " ");

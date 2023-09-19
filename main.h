@@ -57,6 +57,9 @@ int logic(char *name, char **line, int *p_no, int *b_in);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
 
+int chec_if_del(char c, const char *del);
+char *_strtok(char *str, const char *del);
+
 int alias_(char **arr, char *p_name, int p_count);
 ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp);
 int delete_node(ALIAS **head, unsigned int index);
