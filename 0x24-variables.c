@@ -1,7 +1,8 @@
 #include "main.h"
 /**
-* variables - replace variables in a line
-* @line
+* variable - replace variables in a line
+* @line: line
+* Return: replaced variables
 */
 char *variable(char *line)
 {
@@ -22,7 +23,6 @@ char *variable(char *line)
 			{
 				while (*line != '\0' && *line != ' ' && *line != '$')
 				{
-					cp_[0] = '\0';
 					cp_[0] = *line;
 					cp_[1] = '\0';
 					l3 = realloc(l3, strlen(l3) + 2);
@@ -37,7 +37,6 @@ char *variable(char *line)
 				strcat(l2, env);
 			}
 			l3 = realloc(l3, 1);
-			l3[0] = '\0';
 			continue;
 		}
 		cp[0] = *line;
