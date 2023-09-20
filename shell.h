@@ -20,6 +20,8 @@
 #define PWD_FLAG 3
 #define HOME "/home"
 #define NO_CMD ": not found\n"
+#define P_STRING "$ "
+#define C_STRING " ($)"
 
 #define NEWL "\n"
 extern char **environ;
