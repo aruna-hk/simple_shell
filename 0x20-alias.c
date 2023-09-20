@@ -64,7 +64,8 @@ char *check_if_alias(char *cmd)
 */
 int alias_(char **arr, char *p_name, int p_count)
 {
-	char **arr2;
+	char **arr2, *num;
+	int n;
 	char *err_del = ": ", *err_msg = " not found";
 
 	if (arr[1] == NULL)
@@ -76,10 +77,18 @@ int alias_(char **arr, char *p_name, int p_count)
 		{
 			if (strcmp(commands->aliaas, arr2[0]) == 0)
 			{
-				write(1, commands->aliaas, strlen(commands->aliaas));
-				write(1, ALIAS_DEL, strlen(ALIAS_DEL));
-				write(1, commands->r_cmd, strlen(commands->r_cmd));
-				write(1, NEWL, strlen(NEWL));
+				n = write(1, commands->aliaas, strlen(commands->aliaas));
+				n = write(1, ALIAS_DEL, strlen(ALIAS_DEL));
+				n = write(1, commands->r_cmd, strlen(commands->r_cmd));
+				n = write(1, NEWL, strlen(NEWL));
+				if (n == -1)
+				{
+					num = print_number(p_count);
+					write(2, p_name, strlen(p_name));
+					write(2, err_del, strlen(err_del));
+					write(2, num, strlen(num));
+					write(2, err_del, strlen(err_del));
+				}
 				return (0);
 			}
 			commands = commands->next;

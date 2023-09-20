@@ -10,11 +10,7 @@
 int execute_line(char *p_name, char *f_path, char **arglist, int p_count)
 {
 	int sig, status;
-	struct stat *fileinfo;
 	pid_t process;
-
-//	if (stat(f_path, fileinfo) == -1)
-//		return (errno);
 
 	process = fork();
 
