@@ -84,7 +84,6 @@ int main(int args, char **arglist)
 			openerr(arglist[0], p_count, arglist[1]);
 			return (errno);
 		}
-		dup2(fd, STDIN_FILENO);
 	}
 	n = _start_prompt(arglist[0], &p_count);
 	return (n);
