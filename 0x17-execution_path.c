@@ -30,8 +30,9 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 		f_path = get_dir(strdup(tokens[0]), CMD_FLAG);
 		if (f_path == NULL)
 		{
+			errno = 2;
 			err_mesg(name, *p_count, tokens[0], errno);
-			n = errno;
+			n = 127;
 		}
 		else
 		{

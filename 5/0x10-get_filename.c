@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
 * get_file_name - gets file name
 * @a_path: absolute path

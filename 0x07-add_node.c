@@ -2,19 +2,17 @@
 /**
 * add_node -add node at the end of list
 * @head:double ptr to the head
-* @al_name: alias name
-* @al_rp: alias real program  name
+* @tok_: data part of the new node
 * Return: ptr to new node/null
 */
-ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp)
+CMD *add_node(CMD **head, char *tok_)
 {
-	ALIAS *new = malloc(sizeof(ALIAS));
-	ALIAS *lastnode;
+	CMD *new = malloc(sizeof(CMD));
+	CMD *lastnode;
 
 	if (new == NULL)
 		return (NULL);
-	new->aliaas = strdup(al_name);
-	new->r_cmd = strdup(al_rp);
+	new->cmd_name = strdup(tok_);
 	new->next = NULL;
 	if (*head == NULL)
 	{

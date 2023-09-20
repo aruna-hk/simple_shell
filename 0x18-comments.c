@@ -11,7 +11,7 @@ char *remov_comment(char **line)
 
 	clean = *line;
 	cm = strdup(*line);
-	if (*cm == '#')
+	if (*cm == '#' || *cm == '\0')
 		return (NULL);
 	while (*cm != '\0')
 	{
