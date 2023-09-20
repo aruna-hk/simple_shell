@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
 * return_code - check errno and return corresponding return code
 * @n: errno from callong function

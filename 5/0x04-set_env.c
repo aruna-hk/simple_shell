@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
 * _usage_erro - usage error for builit in setenv
 * @p: process count

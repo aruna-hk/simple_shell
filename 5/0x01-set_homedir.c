@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
 * set_home - set home working directory
 * Return: directory to set to home
