@@ -37,10 +37,11 @@ struct in_cmd
 typedef struct in_cmd built_ins;
 
 
-/*
+/**
 * struct alias_cmd - alias commands structure
 * @aliaas: alias cmd name
-* @r_cmd: real command name
+* @r_cmd: real command
+* @next: next command
 */
 struct alias_cmd
 {
@@ -63,7 +64,7 @@ char *_strtok(char *str, const char *del);
 int alias_(char **arr, char *p_name, int p_count);
 ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp);
 int delete_node(ALIAS **head, unsigned int index);
- char *check_if_alias(char *cmd);
+char *check_if_alias(char *cmd);
 
 
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);
@@ -77,7 +78,7 @@ int change_dir(char **arr, char *p_name, int p_count);
 
 char *get_f_path(char *name, int flag);
 /**
-* cmd_tokes - tokenizer structure
+* struct cmd_tokens - tokenizer structure
 * @cmd_name: command name token
 * @next: arguements
 */
