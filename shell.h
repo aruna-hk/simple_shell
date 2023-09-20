@@ -24,6 +24,7 @@
 extern char **environ;
 
 int prompt(char *name);
+int check_pipe(char *str);
 int execute(char *str, char *name);
 int execute_line(char **arr, char *name);
 char **arr(char *string);
