@@ -18,7 +18,7 @@ char **dtokenizer(char *str, const char *del)
 	{
 		arr[i - 1] = strdup(tok);
 		arr = realloc(arr, ((i + 1) * sizeof(char *)));
-		tok = strtok(NULL, " ");
+		tok = strtok(NULL, del);
 		i++;
 	}
 	arr[i - 1] = NULL;
