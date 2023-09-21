@@ -54,6 +54,7 @@ struct alias_cmd
 typedef struct alias_cmd ALIAS;
 int unset(void);
 char *variable(char *line);
+int pipes(char *name, char *line, int *p_count, int *b_in);
 
 char *remov_comment(char **line);
 int logic(char *name, char **line, int *p_no, int *b_in);
