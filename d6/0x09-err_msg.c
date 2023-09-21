@@ -26,5 +26,4 @@ void err_mesg(char *program, int p_count, char *cmd, int err_no)
 	}
 	else
 		perror(NULL);
-	free(num);
 }

@@ -9,30 +9,29 @@
 */
 int exec_command(char *name, char *line, int *p_count, int *b_in)
 {
-	char **tokens = dtokenizer(line, " ");
+	char **tokens = tokenizer(line, " ");
 	char *f_path;
 	int n;
 	int (*builtin)(char **, char *, int);
 
+	if (check_if_alias(tokens[0]) != NULL)
+		tokens[0] = check_if_alias(tokens[0]);
 	(*p_count)++;
 	if (get_built_in(tokens[0]) != NULL)
 	{
 		builtin = get_built_in(tokens[0]);
 		n = builtin(tokens, name, *p_count);
-		*b_in = n;
+		*b_in = 0;
 	}
 	else if (*tokens[0] == '/')
-	{
-
 		n = execute_line(name, tokens[0], tokens, *p_count);
-	}
 	else
 	{
 		f_path = full_path(tokens[0], CMD_FLAG);
 		if (f_path == NULL)
 		{
 			err_mesg(name, *p_count, tokens[0], errno);
-			n = 127;
+			n = errno;
 		}
 		else
 		{
@@ -40,6 +39,6 @@ int exec_command(char *name, char *line, int *p_count, int *b_in)
 			free(f_path);
 		}
 	}
-	freegrid(tokens);
+	free_string_array(&tokens);	
 	return (n);
 }

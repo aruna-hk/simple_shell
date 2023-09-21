@@ -10,7 +10,10 @@ int (*get_built_in(char *s))(char **, char *, int)
 	int i = 0;
 
 	built_ins cmds[] = {
+		{"alias", alias_},
 		{"env", _printenv},
+		{"setenv", _setenv},
+		{"cd", change_dir},
 		{'\0', NULL},
 	};
 	while (cmds[i].cmd_name != NULL)

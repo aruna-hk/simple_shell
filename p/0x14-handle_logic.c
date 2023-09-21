@@ -22,7 +22,7 @@ int logic(char *name, char *line, int *p_no, int *b_in)
 		j = 0;
 		while (tok_[j] != NULL)
 		{
-			or_tok = dtokenizer(tok_[j], "|");
+			or_tok = dtokenizer(tok_[j], "||");
 			l = 0;
 			while (or_tok[l] != NULL)
 			{
@@ -36,13 +36,13 @@ int logic(char *name, char *line, int *p_no, int *b_in)
 				*b_in = n;
 				break;
 			}
-			freegrid(or_tok);
 			j++;
 		}
-		freegrid(tok_);
 		i++;
 	}
-	freegrid(tok);
+	free_string_array(&tok);	
+	free_string_array(&tok_);	
+	free_string_array(&or_tok);	
 	if (n != 0 && (i > 1 || j > 1 || l > 1))
 		*b_in = n;
 	return (n);

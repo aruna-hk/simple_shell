@@ -20,6 +20,8 @@
 #define PWD_FLAG 3
 #define HOME "/home"
 #define NO_CMD ": not found\n"
+#define P_STRING "$ "
+#define C_STRING " ($)"
 
 #define NEWL "\n"
 extern char **environ;
@@ -52,28 +54,20 @@ struct alias_cmd
 typedef struct alias_cmd ALIAS;
 int unset(void);
 char *variable(char *line);
+int pipes(char *name, char *line, int *p_count, int *b_in);
 
 char *remov_comment(char **line);
-int logic(char *name, char *line, int *p_no, int *b_in);
+int logic(char *name, char **line, int *p_no, int *b_in);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
 
 int chec_if_del(char c, const char *del);
 char *_strtok(char *str, const char *del);
-void free_string_array(char ***array);
 
 int alias_(char **arr, char *p_name, int p_count);
 ALIAS *add_ALIAS(ALIAS **head, char *al_name, char *al_rp);
 int delete_node(ALIAS **head, unsigned int index);
 char *check_if_alias(char *cmd);
-
-
-char *name_(char *name);
-char *full_path(char *s_name, int flag);
-char *get_f_path(char *a_path);
-char *search_path(char *name);
-char *get_dir(char *shorthand_name, int flag, int *id);
-
 
 
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);
@@ -85,6 +79,7 @@ int _printenv(char **arr, char *sh_name, int p_count);
 int _setenv(char **arr, char *p_name, int p_count);
 int change_dir(char **arr, char *p_name, int p_count);
 
+char *get_f_path(char *name, int flag);
 /**
 * struct cmd_tokens - tokenizer structure
 * @cmd_name: command name token
@@ -97,7 +92,7 @@ struct cmd_tokens
 };
 typedef struct cmd_tokens CMD;
 
-void freegrid(char **arr);
+void free_nodes(CMD *head);
 void openerr(char *prog_name, int p_count, char *filename);
 void _err_msg(char *name, int p_count, char *cmd_name);
 char *print_number(int n);
@@ -105,16 +100,16 @@ void err_mesg(char *program, int p_count, char *cmd, int err_no);
 int execute_line(char *p_name, char *f_path, char **arglist, int p_count);
 char *get_file_name(char *a_path);
 CMD *add_begin(CMD **head, char *path);
-int exec_command(char *name, char *line, int *p_count, int *b_in);
+int exec_command(char *name, char **line, int *p_count, int *b_in);
 CMD *add_node(CMD **head, char *tok_);
+char *get_dir(char *shorthand_name, int flag);
 int child_n_exit(char *name, char *line, int *n);
-char **arr_strings(CMD **ptr);
+char *search_path(char *name);
+char **arr_strings(CMD *ptr);
 int _exit_(char *name, char *string);
 size_t list_len(const CMD *h);
-char **tokenizer(char *string, const char *delimiter);
+char **tokenizer(char **string, const char *delimiter);
 
 int _start_prompt(char *name, int *p_count);
 char *set_home(void);
-void freeLinkedList(CMD **head);
-char **dtokenizer(char *str, const char *del);
 #endif

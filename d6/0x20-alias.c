@@ -70,7 +70,7 @@ int alias_(char **arr, char *p_name, int p_count)
 
 	if (arr[1] == NULL)
 		return (print_list());
-	arr2 = tokenizer(&arr[1], "=");
+	arr2 = tokenizer(arr[1], "=");
 	if (arr2[1] == NULL)
 	{
 		while (commands != NULL)

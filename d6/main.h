@@ -97,7 +97,6 @@ struct cmd_tokens
 };
 typedef struct cmd_tokens CMD;
 
-void freegrid(char **arr);
 void openerr(char *prog_name, int p_count, char *filename);
 void _err_msg(char *name, int p_count, char *cmd_name);
 char *print_number(int n);

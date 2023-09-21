@@ -39,13 +39,16 @@ int main(int args, char **arglist)
 
 	if (args >= 2)
 	{
-		fullpath = full_path(arglist[0], FILE_FLAG);
+		fullpath = full_path(arglist[1], FILE_FLAG);
 		fd = open(fullpath, O_RDONLY);
 		if (fd == -1)
 		{
+			free(fullpath);
 			openerr(arglist[0], p_count, arglist[1]);
-			return (errno);
+			exit(errno);
 		}
+		free(fullpath);
+		dup2(fd, STDIN_FILENO);
 	}
 	n = _start_prompt(arglist[0], &p_count);
 	return (n);

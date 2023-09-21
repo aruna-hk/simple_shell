@@ -23,9 +23,10 @@ int return_code(int n, int *b_in)
 */
 int _start_prompt(char *name, int *p_count)
 {
+	char *line = NULL;
 	ssize_t nread;
 	size_t r_read;
-	char *p_string, *first_s, *line = NULL, *line_;
+	char *p_string, *first_s, **arr;
 	int child_id = 0, n = 0, b_in = 0;
 
 	while (1)
@@ -47,17 +48,15 @@ int _start_prompt(char *name, int *p_count)
 			break;
 		}
 		line[nread - 1] = '\0';
-		line_ = line;
-		while (*line_ == ' ')
-			line_++;
-		if (*line_ == '\0')
-		{
-			free(line);
+		while (*line == ' ')
+			line++;
+		if (*line == '\0')
 			continue;
-		}
 		first_s = strtok(strdup(line), " ");
 		if (strcmp(first_s, "exit") == 0)
 		{
+			arr = dtokenizer(line, " ");
+			freegrid(arr);
 			free(first_s);
 			free(line);
 			exit(0);

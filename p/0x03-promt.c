@@ -23,9 +23,11 @@ int return_code(int n, int *b_in)
 */
 int _start_prompt(char *name, int *p_count)
 {
+	static int prev_return;
+	char *line = NULL;
 	ssize_t nread;
 	size_t r_read;
-	char *p_string, *first_s, *line = NULL, *line_;
+	char *p_string, *first_s, **arr;
 	int child_id = 0, n = 0, b_in = 0;
 
 	while (1)
@@ -40,30 +42,30 @@ int _start_prompt(char *name, int *p_count)
 		}
 		nread = getline(&line, &r_read, stdin);
 		if (nread == EOF)
-		{
-			free(line);
-			if (isatty(STDIN_FILENO))
-				write(1, NEWL, strlen(NEWL));
 			break;
-		}
 		line[nread - 1] = '\0';
-		line_ = line;
-		while (*line_ == ' ')
-			line_++;
-		if (*line_ == '\0')
+		while (*line == ' ')
+			line++;
+		if (*line == '\0')
+			continue;
+		line = remov_comment(&line);
+		if (line == NULL)
+			continue;
+		first_s = strtok(strdup(line), " ");
+		if (strcmp(first_s, name) == 0 || strcmp(first_s, "exit") == 0)
 		{
+			free(first_s);
+			arr = dtokenizer(line, " ");
+			n = create_child(arr, p_count, name, &child_id, prev_return);
+			free_string_array(&arr);
 			free(line);
 			continue;
 		}
-		first_s = strtok(strdup(line), " ");
-		if (strcmp(first_s, "exit") == 0)
-		{
-			free(first_s);
-			free(line);
-			exit(0);
-		}
 		free(first_s);
 		n = logic(name, line, p_count, &b_in);
+		prev_return = n;
+		n = return_code(n, &b_in);
+		free(line);
 	}
 	return (n);
 }

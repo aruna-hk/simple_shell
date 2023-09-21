@@ -11,19 +11,14 @@ int exec_command(char *name, char *line, int *p_count, int *b_in)
 {
 	char **tokens = dtokenizer(line, " ");
 	char *f_path;
+	struct stat file_info;
 	int n;
 	int (*builtin)(char **, char *, int);
 
 	(*p_count)++;
-	if (get_built_in(tokens[0]) != NULL)
+	if (*tokens[0] == '/')
 	{
-		builtin = get_built_in(tokens[0]);
-		n = builtin(tokens, name, *p_count);
-		*b_in = n;
-	}
-	else if (*tokens[0] == '/')
-	{
-
+		
 		n = execute_line(name, tokens[0], tokens, *p_count);
 	}
 	else
@@ -36,6 +31,7 @@ int exec_command(char *name, char *line, int *p_count, int *b_in)
 		}
 		else
 		{
+			//if (stat(f_path, &file_info) == 0)
 			n = execute_line(name, f_path, tokens, *p_count);
 			free(f_path);
 		}
