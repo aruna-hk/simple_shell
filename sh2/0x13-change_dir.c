@@ -47,26 +47,6 @@ int cd(char *d_name, char *name, int proc_count, char **to_dir)
 	return (0);
 }
 /**
-* concat_dir_name - get full_directory name to change to
-* @current_dir: current dir
-* @name_ofdir: arguement name
-* Return: directory full path
-*/
-char *concat_dir_name(char *current_dir, char *name_ofdir)
-{
-	char *f_path;
-	char *name = get_file_name(name_ofdir);
-
-	f_path = malloc(strlen(current_dir) + strlen(name) + 5);
-	f_path[0] = '\0';
-
-	strcpy(f_path, current_dir);
-	strcat(f_path, "/");
-	strcat(f_path, name);
-
-	return (f_path);
-}
-/**
 * dirto - gets directory to change to
 * @flag: to det env in env variables
 * Return: directory to change to
@@ -124,13 +104,7 @@ int change_dir(char **arr, char *p_name, int p_count)
 		}
 	}
 	else
-	{
-		dir_to = get_dir(strdup(arr[1]), FILE_FLAG);
-		if (*(arr[1]) == '/')
-			dir_to = dir_to;
-		else
-			dir_to = concat_dir_name(dir_to, arr[1]);
-	}
+		dir_to = full_path(strdup(arr[1]), FILE_FLAG);
 	p =  cd(dir_to, p_name, p_count, arr);
 	if (p == -1)
 		return (errno);

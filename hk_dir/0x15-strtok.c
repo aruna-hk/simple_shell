@@ -2,14 +2,14 @@
 
 static char *ptr;
 /**
-* _strtok_s- string tokenizer support function
+* strtok_s- string tokenizer support function
 * @string_del: string to delimit
 * @string: current pos of pointer in string
 * @delim: delimitor
 * @i: string pos
 * Return: NULL/ ptr to string
 */
-char *_strtok_s(char *string_del, char *string, const char *delim, int i)
+char *strtok_s(char *string_del, char *string, const char *delim, int i)
 {
 
 	char *rr;
@@ -40,12 +40,12 @@ char *_strtok_s(char *string_del, char *string, const char *delim, int i)
 	return (NULL);
 }
 /**
-* _strtok - string tokenizer
+* strtok - string tokenizer
 * @string: takes string as arguement
 * @delim: delimitore
 * Return: string ptr/ null
 */
-char *_strtok(char *string, const char *delim)
+char *strtok(char *string, const char *delim)
 {
 	char *ret, *string_del, *pp;
 	int i = 0;
@@ -75,7 +75,7 @@ char *_strtok(char *string, const char *delim)
 	{
 		if (*string == *delim)
 		{
-			ret = _strtok_s(string_del, string, delim, i);
+			ret = strtok_s(string_del, string, delim, i);
 			if (ret != NULL)
 				return (ret);
 			free(string_del);

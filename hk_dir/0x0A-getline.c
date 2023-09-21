@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
-* _getline - getline from a file stream
+* getline - getline from a file stream
 * @store: pointer to buffer to store the line
 * @n_read: length of line
 * @ptr: file stream
 * Return: -1 --failure/ number of characters read
 */
-ssize_t _getline(char **store, size_t *n_read, FILE *ptr)
+ssize_t getline(char **store, size_t *n_read, FILE *ptr)
 {
 	ssize_t nn_read;
 	char *rr_buffer;

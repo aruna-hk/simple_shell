@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * arr_strings - convert list to array of strings
 * @ptr: token list

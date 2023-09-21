@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * execute_line - execute command with execve sys call
 * @p_name: shell name
@@ -28,7 +28,7 @@ int execute_line(char *p_name, char *f_path, char **arglist, int p_count)
 		if (execve(f_path, arglist, environ) == -1)
 		{
 			err_mesg(p_name, p_count, arglist[0], errno);
-			exit(127);
+			exit(errno);
 		}
 	else
 		exit(EXIT_SUCCESS);

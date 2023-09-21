@@ -19,7 +19,7 @@ char *search_path(char *name)
 		return (NULL);
 	}
 	file_d = malloc(sizeof(struct stat));
-	f_tok = _strtok(strdup(env_p), ":");
+	f_tok = strtok(strdup(env_p), ":");
 	while (f_tok != NULL)
 	{
 		path = malloc(strlen(f_tok) + strlen(name) + 4);
@@ -34,7 +34,7 @@ char *search_path(char *name)
 			return (f_tok);
 		}
 		free(path);
-		f_tok = _strtok(NULL, ":");
+		f_tok = strtok(NULL, ":");
 	}
 	free(file_d);
 	free(f_tok);

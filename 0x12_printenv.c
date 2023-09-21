@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * _printenv - print environment variables
 * @arr: array os arguements strings

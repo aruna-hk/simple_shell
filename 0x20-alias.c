@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 static ALIAS *commands;
 /**
  * print_list - print content of linked list and

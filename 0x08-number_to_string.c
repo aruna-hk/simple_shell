@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * print_number - takes int and prints the number
  * @n: int arguement

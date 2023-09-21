@@ -1,5 +1,26 @@
 #include "main.h"
+/**
+* free_list - frees linked list
+* @head: list ptr
+*/
+void free_list(CMD *head)
+{
+	CMD *temp;
 
+	if (head == NULL)
+	{
+		free(head);
+	}
+	while (head != NULL)
+	{
+		temp = head->next;
+		free(head->cmd_name);
+		free(head);
+		head = temp;
+	}
+	free(temp);
+
+}
 /**
 * tokenizer - tokenize command from user
 * @string: cmd from user
@@ -23,5 +44,6 @@ char **tokenizer(char **string, const char *delimiter)
 	}
 	free(tok);
 	arrstring = arr_strings(head);
+	free_list(head);
 	return (arrstring);
 }

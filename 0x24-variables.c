@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * variable - replace variables in a line
 * @line: line

@@ -6,7 +6,7 @@
 */
 char *get_file_name(char *a_path)
 {
-char *tok;
+	char *tok;
 
 	tok = strtok(strdup(a_path), "/");
 	while (tok != NULL)

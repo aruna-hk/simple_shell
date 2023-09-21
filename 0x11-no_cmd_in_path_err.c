@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * _err_msg - error message
 * @name: shell name

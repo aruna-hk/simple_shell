@@ -1,0 +1,26 @@
+#include "main.h"
+/**
+* get_file_name - gets file name
+* @a_path: absolute path
+* Return: filename | NULL
+*/
+char *get_f_path(char *a_pathi, int flag)
+{
+	char *name;
+	char *dir;
+	char *tok;
+
+	tok = strtok(a_path, "/");
+	while (tok != NULL)
+	{
+		if (strcmp(tok, P_PWD) != 0 && strcmp(tok, WD) != 0)
+		{
+			name = tok;
+			break;
+		}
+		tok = strtok(NULL, "/");
+	}
+	dprintf(STDOUT_FILENO, "=%s\n", name);
+	
+	return (NULL);
+}

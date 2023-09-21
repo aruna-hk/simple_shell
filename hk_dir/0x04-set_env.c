@@ -38,7 +38,7 @@ int _setenv(char **arr, char *p_name, int p_count)
 	strcat(new, arr[2]);
 	while (environ[i] != NULL)
 	{
-		env_tok = _strtok(strdup(environ[i]), "=");
+		env_tok = strtok(strdup(environ[i]), "=");
 		if (strcmp(env_tok, arr[1]) == 0)
 		{
 			free(env_tok);

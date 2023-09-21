@@ -1,0 +1,44 @@
+#include "main.h"
+
+/**
+* get_dir - getdirectpory
+* @shorthand_name: string to guide search of directory
+* @flag: file/ cmd
+* Return: directory name
+*/
+char *get_dir(char *shorthand_name, int flag)
+{
+	char *tok;
+	char *ret;
+	char *pwd = getenv("PWD");
+
+	if (pwd == NULL)
+	{
+		ret = malloc(sizeof(char *) * (strlen(shorthand_name) + 2));
+		ret[0] = '\0';
+		strcat(ret, "/");
+		strcat(ret, shorthand_name);
+		return (ret);
+	}
+	tok = strtok(strdup(shorthand_name), "/");
+	while (tok != NULL)
+	{
+		if (strcmp(tok, P_PWD) == 0)
+		{
+			int len = strlen(pwd) - 1;
+			while (len >= 0)
+			{
+				if (pwd[len] == '/')
+				{
+					pwd[len] = '\0';
+					break;
+				}
+				pwd[len] = '\0';
+				len--;
+			}
+		}
+		tok = strtok(NULL, "/");
+	}
+	dprintf(STDOUT_FILENO, "%s\n", pwd);
+	return (pwd);
+}

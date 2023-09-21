@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * logic -  handle cmd arguemen logic
 * @name: shell name
@@ -40,6 +40,9 @@ int logic(char *name, char **line, int *p_no, int *b_in)
 		}
 		i++;
 	}
+	free_string_array(tok);	
+	free_string_array(tok_);	
+	free_string_array(or_tok);	
 	if (n != 0 && (i > 1 || j > 1 || l > 1))
 		*b_in = n;
 	return (n);

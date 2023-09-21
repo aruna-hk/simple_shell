@@ -1,16 +1,33 @@
-#include "shell.h"
+#include "main.h"
+/**
+* return_code - check errno and return corresponding return code
+* @n: errno from callong function
+* @b_in: built in identifier
+* Return: calling function return code
+*/
+int return_code(int n, int *b_in)
+{
+	if (*b_in != 0)
+		return (*b_in);
+	if (n == 0)
+		return (0);
+	else if (n == 13)
+		return (126);
+	return (127);
+}
 /**
 * _start_prompt - shell entry point
-* @nme:number of arguements
+* @name:number of arguements
 * @p_count: process count
 * Return: 0/errno
 */
-int _start_prompt(char *nme, int *p_count)
+int _start_prompt(char *name, int *p_count)
 {
 	static int prev_return;
+	char *line = NULL;
 	ssize_t nread;
 	size_t r_read;
-	char *f, **arr, *f2, *line = NULL;
+	char *p_string, *first_s, **arr;
 	int child_id = 0, n = 0, b_in = 0;
 
 	while (1)
@@ -18,33 +35,35 @@ int _start_prompt(char *nme, int *p_count)
 		if (isatty(STDIN_FILENO))
 		{
 			if (child_id == 0)
-				write(1, P_STRING, strlen(P_STRING));
+				p_string = "$ ";
 			else
-				write(1, C_STRING, strlen(C_STRING));
+				p_string = " ($) ";
+			write(1, p_string, strlen(p_string));
 		}
-		nread = _getline(&line, &r_read, stdin);
+		nread = getline(&line, &r_read, stdin);
 		if (nread == EOF)
-		{
-			if (isatty(STDIN_FILENO))
-				write(1, NEWL, strlen(NEWL));
 			break;
-		}
 		line[nread - 1] = '\0';
 		while (*line == ' ')
 			line++;
+		if (*line == '\0')
+			continue;
 		line = remov_comment(&line);
 		if (line == NULL)
 			continue;
-		f = strtok(strdup(line), " ");
-		f2 = strtok(NULL, " ");
-		if ((strcmp(f, nme) == 0 && f2 == NULL) || strcmp(f, "exit") == 0)
+		first_s = strtok(strdup(line), " ");
+		if (strcmp(first_s, name) == 0 || strcmp(first_s, "exit") == 0)
 		{
 			arr = tokenizer(&line, " ");
-			n = create_child(arr, p_count, nme, &child_id, prev_return);
+			n = create_child(arr, p_count, name, &child_id, prev_return);
+			free_string_array(arr);
+			free(first_s);
 			continue;
 		}
-		n = logic(nme, &line, p_count, &b_in);
+		free(first_s);
+		n = logic(name, &line, p_count, &b_in);
 		prev_return = n;
+		n = return_code(n, &b_in);
 	}
 	return (n);
 }

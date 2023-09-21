@@ -18,7 +18,7 @@ int chec_if_del(char c, const char *del)
 	return (-1);
 }
 /**
-* _strtok - string tokenizer
+* strtok - string tokenizer
 * @str: string to tokenize
 * @del: delimitor
 * Return: NULL if no tokens / string token

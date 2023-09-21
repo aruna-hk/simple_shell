@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * set_home - set home working directory
 * Return: directory to set to home
@@ -10,10 +10,10 @@ char *set_home(void)
 
 	while (environ[i] != NULL)
 	{
-		working_dir = _strtok(strdup(environ[i]), "=");
+		working_dir = strtok(strdup(environ[i]), "=");
 		if (strcmp(working_dir, "PWD") == 0)
 		{
-			working_dir = _strtok(NULL, ":");
+			working_dir = strtok(NULL, ":");
 			return (working_dir);
 		}
 		free(working_dir);

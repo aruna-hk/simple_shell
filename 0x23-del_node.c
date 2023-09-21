@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * delete_node - delete node at give index
 * @head: ptr to head double

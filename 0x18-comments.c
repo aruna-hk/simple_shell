@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * remov_comment - remove comment from a line
 * @line: line pointer
@@ -7,11 +7,12 @@
 char *remov_comment(char **line)
 {
 	char *clean;
-	char *cm;
+	char *cm, *mv;
 
 	clean = *line;
 	cm = strdup(*line);
-	if (*cm == '#' || *cm == '\0')
+	mv = cm;
+	if (*cm == '#')
 		return (NULL);
 	while (*cm != '\0')
 	{
@@ -25,7 +26,7 @@ char *remov_comment(char **line)
 			}
 			else
 			{
-				clean = _strtok(*line, "#");
+				clean = strtok(*line, "#");
 				if (clean[strlen(clean) - 1]  == ' ')
 					clean[strlen(clean) - 1] = '\0';
 				break;
@@ -33,6 +34,7 @@ char *remov_comment(char **line)
 		}
 		cm++;
 	}
-	clean = variable(clean);
+	free(mv);
+/*	clean = variable(clean);*/
 	return (clean);
 }

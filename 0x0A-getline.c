@@ -1,7 +1,7 @@
-#include "shell.h"
+#include "main.h"
 
 /**
-* _getline - getline from a file stream
+* _getline - _getline from a file stream
 * @store: pointer to buffer to store the line
 * @n_read: length of line
 * @ptr: file stream

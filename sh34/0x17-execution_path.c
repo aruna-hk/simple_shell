@@ -1,22 +1,24 @@
-#include "main.h"
+#include "shell.h"
 /**
 * exec_command - tokenize command and pass the command array to execve
 * @name: shell_name
 * @line: pointer to read_line
 * @p_count: pointer to program count
+* @b_in: inbuilt command identifier
 * Return: 0 or errno
 */
 int exec_command(char *name, char **line, int *p_count, int *b_in)
 {
 	char **tokens = tokenizer(line, " ");
-	char *f_path, *full_path, *f_name;
+	char *f_path = NULL, *full_path, *f_name;
 	int n;
 	int (*builtin)(char **, char *, int);
 
+	if (check_if_alias(tokens[0]) != NULL)
+		tokens[0] = check_if_alias(tokens[0]);
 	(*p_count)++;
 	if (get_built_in(tokens[0]) != NULL)
 	{
-		
 		builtin = get_built_in(tokens[0]);
 		n = builtin(tokens, name, *p_count);
 		*b_in = 0;
@@ -28,8 +30,9 @@ int exec_command(char *name, char **line, int *p_count, int *b_in)
 		f_path = get_dir(strdup(tokens[0]), CMD_FLAG);
 		if (f_path == NULL)
 		{
+			errno = 2;
 			err_mesg(name, *p_count, tokens[0], errno);
-			n = errno;
+			n = 127;
 		}
 		else
 		{

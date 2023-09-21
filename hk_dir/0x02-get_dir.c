@@ -14,7 +14,7 @@ char *get_dir(char *shorthand_name, int flag)
 
 	if (pwd == NULL)
 		return (shorthand_name);
-	tok = _strtok(shorthand_name, PATH);
+	tok = strtok(shorthand_name, PATH);
 	if (flag == CMD_FLAG && (strcmp(tok, WD) != 0) && (strcmp(tok, P_PWD) != 0))
 	{
 		tok = search_path(shorthand_name);
@@ -37,7 +37,7 @@ char *get_dir(char *shorthand_name, int flag)
 			}
 			env[len] = '\0';
 		}
-		tok = _strtok(NULL, PATH);
+		tok = strtok(NULL, PATH);
 	}
 	return (env);
 }

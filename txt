@@ -1,1 +1,3 @@
 ls -al
+pwd
+echo "DONE"

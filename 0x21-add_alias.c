@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * add_node -add node at the end of list
 * @head:double ptr to the head

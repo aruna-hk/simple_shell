@@ -40,7 +40,7 @@ int _start_prompt(char *name, int *p_count)
 				p_string = " ($) ";
 			write(1, p_string, strlen(p_string));
 		}
-		nread = _getline(&line, &r_read, stdin);
+		nread = getline(&line, &r_read, stdin);
 		if (nread == EOF)
 			break;
 		line[nread - 1] = '\0';
@@ -51,13 +51,16 @@ int _start_prompt(char *name, int *p_count)
 		line = remov_comment(&line);
 		if (line == NULL)
 			continue;
-		first_s = _strtok(strdup(line), " ");
+		first_s = strtok(strdup(line), " ");
 		if (strcmp(first_s, name) == 0 || strcmp(first_s, "exit") == 0)
 		{
 			arr = tokenizer(&line, " ");
 			n = create_child(arr, p_count, name, &child_id, prev_return);
+			free_string_array(arr);
+			free(first_s);
 			continue;
 		}
+		free(first_s);
 		n = logic(name, &line, p_count, &b_in);
 		prev_return = n;
 		n = return_code(n, &b_in);

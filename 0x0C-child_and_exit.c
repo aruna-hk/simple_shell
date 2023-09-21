@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
 * exit_no - get the exit number
 * @num: string number arguemrnt

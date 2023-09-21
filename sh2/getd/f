@@ -1,0 +1,19 @@
+#include "main.h"
+/**
+*/
+char *name_(char *name)
+{
+
+	char *tok = strtok(strdup(name), "/");
+	while (tok != NULL)
+	{
+		if (strcmp(tok , WD) != 0 || strcmp(tok, P_PWD) != 0)
+		{
+			free(dup_name);
+			return (tok);
+		}
+		tok = strtok(NULL, " ");
+	}
+	free(dup_name);
+	return (NULL);
+}

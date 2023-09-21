@@ -4,8 +4,10 @@
 * @a_path: absolute path
 * Return: filename | NULL
 */
-char *get_file_name(char *a_path)
+char *get_f_path(char *a_path)
 {
+	char *name;
+	char *dir;
 	char *tok;
 
 	tok = strtok(a_path, "/");
@@ -14,6 +16,6 @@ char *get_file_name(char *a_path)
 		if (strcmp(tok, P_PWD) != 0 && strcmp(tok, WD) != 0)
 			return (tok);
 		tok = strtok(NULL, "/");
-	}
+	}	
 	return (NULL);
 }

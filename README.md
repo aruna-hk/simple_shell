@@ -7,6 +7,4 @@ the project is done in groups of two i and my parter partnerd up to produce
 thi simple_shell 
 
 the shell acts as intermidiary between programs and the operating system
-it provides
-
-it simple_shell - doesnt incorporate all shell features 
+it provides 
