@@ -122,4 +122,5 @@ char *set_home(void);
 void freeLinkedList(CMD **head);
 char **dtokenizer(char *str, const char *del);
 void p_e_error(char *name, int p_no, char **il_no);
+int un_setenv(char **arr, char *p_name, int p_count);
 #endif

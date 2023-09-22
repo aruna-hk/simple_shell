@@ -20,6 +20,7 @@ int _setenv(char **arr, char *p_name, int p_count)
 		write(2, num, strlen(num));
 		write(2, usage, strlen(usage));
 		write(2, NEWL, strlen(NEWL));
+		free(num);
 		return (0);
 	}
 	setenv(arr[1], arr[2], 1);
