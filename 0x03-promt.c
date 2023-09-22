@@ -20,12 +20,14 @@ int exit_no(char *num)
 * fork_child- create child process
 * @child_id: pointer to child identifier
 * @p_count: program count
+* @arr:array --reduces size of chil_exit
 */
-void fork_child(int *child_id, int *p_count)
+void fork_child(int *child_id, int *p_count, char **arr)
 {
 	pid_t child;
 	int sig;
 
+	freegrid(arr);
 	child = fork();
 	if (child == -1)
 		perror(NULL);
@@ -82,8 +84,7 @@ int child_exit(char *name, char **line, int *child_id, int *p_count)
 	{
 		free(*line);
 		*line = NULL;
-		freegrid(arr);
-		fork_child(child_id, p_count);
+		fork_child(child_id, p_count, arr);
 		return (0);
 	}
 	freegrid(arr);
