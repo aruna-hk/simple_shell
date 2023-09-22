@@ -68,6 +68,7 @@ int delete_node(ALIAS **head, unsigned int index);
 char *check_if_alias(char *cmd);
 
 
+
 char *name_(char *name);
 char *full_path(char *s_name, int flag);
 char *get_f_path(char *a_path);
@@ -75,7 +76,7 @@ char *search_path(char *name);
 char *get_dir(char *shorthand_name, int flag, int *id);
 
 
-
+void line_clean(char **line);
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);
 void comma_cmds(char **line, int *p_count, char *name);
 int create_child(char **arr, int *p_count, char *name, int *c_id, int p_ret);
@@ -105,16 +106,16 @@ void err_mesg(char *program, int p_count, char *cmd, int err_no);
 int execute_line(char *p_name, char *f_path, char **arglist, int p_count);
 char *get_file_name(char *a_path);
 CMD *add_begin(CMD **head, char *path);
-int exec_command(char *name, char *line, int *p_count, int *b_in);
+int exec_command(char *name, char *line, int *p_count);
 CMD *add_node(CMD **head, char *tok_);
 int child_n_exit(char *name, char *line, int *n);
 char **arr_strings(CMD **ptr);
 int _exit_(char *name, char *string);
 size_t list_len(const CMD *h);
 char **tokenizer(char *string, const char *delimiter);
+void  p_e_error(char *name, int p_no, char **il_no);
 
 int _start_prompt(char *name, int *p_count);
 char *set_home(void);
 void freeLinkedList(CMD **head);
-char **dtokenizer(char *str, const char *del);
 #endif

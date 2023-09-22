@@ -1,28 +1,5 @@
 #include "main.h"
 /**
-* get_f_path - gets_full file_path
-* @name: absolute name path
-* @flag: file/smc flag
-* Return: full path of the file
-*/
-char *get_f_path(char *name, int flag)
-{
-	char *full_path;
-	char *name_, *dir;
-
-	dir = get_dir(strdup(name), flag);
-	if (*name == '/')
-		return (dir);
-	name_ = get_file_name(strdup(name));
-	full_path = malloc(strlen(dir) + strlen(name_) + 3);
-	full_path[0] = '\0';
-	strcpy(full_path, dir);
-	strcat(full_path, "/");
-	strcat(full_path, name_);
-	free(name_);
-	return (full_path);
-}
-/**
 * openerr - write oped file error to standard error
 * @prog_name: program name --shell name
 * @p_count: program count
@@ -55,13 +32,14 @@ void openerr(char *prog_name, int p_count, char *filename)
 * @arglist: arguement list
 * Return: 0-sucess /exit status
 */
-int main(int args, char **arglist)
+int main(int args, char **arglist, char **envp)
 {
 	int open_home, p_count = 0, fd, n;
 	char **homeset;
-	char *full_path;
+	char *file_path;
 	char *homedir = set_home();
 
+	environ = envp;
 	if (homedir != NULL)
 	{
 		open_home = chdir(homedir);
@@ -77,15 +55,19 @@ int main(int args, char **arglist)
 	}
 	if (args >= 2)
 	{
-		full_path = get_f_path(arglist[1], FILE_FLAG);
-		fd = open(full_path, O_RDONLY);
+		if (*arglist[1] = '/')
+			file_path = strdup(arglist[1]);
+		else
+			file_path = full_path(arglist[1], FILE_FLAG);
+		fd = open(file_path, O_RDONLY);
 		if (fd == -1)
 		{
 			openerr(arglist[0], p_count, arglist[1]);
+			free(file_path);
 			return (errno);
 		}
+		free(file_path);
 		dup2(fd, STDIN_FILENO);
-		exit(0);
 	}
 	n = _start_prompt(arglist[0], &p_count);
 	return (n);

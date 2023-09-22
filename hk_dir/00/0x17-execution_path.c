@@ -31,7 +31,6 @@ int exec_command(char *name, char *line, int *p_count, int *b_in)
 		f_path = full_path(tokens[0], CMD_FLAG);
 		if (f_path == NULL)
 		{
-			errno = 2;
 			err_mesg(name, *p_count, tokens[0], errno);
 			n = 127;
 		}

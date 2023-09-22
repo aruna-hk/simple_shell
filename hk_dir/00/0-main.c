@@ -30,7 +30,6 @@ void openerr(char *prog_name, int p_count, char *filename)
 * main -sets up environment and choose execution path
 * @args: number of arguements
 * @arglist: arguement list
-* @envp: encironmen variables
 * Return: 0-sucess /exit status
 */
 int main(int args, char **arglist, char **envp)
@@ -41,8 +40,8 @@ int main(int args, char **arglist, char **envp)
 	environ = envp;
 	if (args >= 2)
 	{
-		if (*arglist[1] = '/')
-			full_path = strdup(arglist[0]);
+		if (*arglist[1] == '/')
+			fullpath = strdup(arglist[1]);
 		else
 			fullpath = full_path(arglist[1], FILE_FLAG);
 		fd = open(fullpath, O_RDONLY);

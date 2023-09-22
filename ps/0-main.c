@@ -30,30 +30,31 @@ void openerr(char *prog_name, int p_count, char *filename)
 * main -sets up environment and choose execution path
 * @args: number of arguements
 * @arglist: arguement list
-* @envp: encironmen variables
 * Return: 0-sucess /exit status
 */
 int main(int args, char **arglist, char **envp)
 {
-	int p_count = 0, fd, n;
-	char *fullpath;
+	int p_count = 0, fd, n = 0;
+	char *fullpath = NULL;
 
 	environ = envp;
 	if (args >= 2)
 	{
-		if (*arglist[1] = '/')
-			full_path = strdup(arglist[0]);
+		if (*arglist[1] == '/')
+			fullpath = strdup(arglist[1]);
 		else
 			fullpath = full_path(arglist[1], FILE_FLAG);
 		fd = open(fullpath, O_RDONLY);
 		if (fd == -1)
 		{
 			free(fullpath);
+			fullpath = NULL;
 			openerr(arglist[0], p_count, arglist[1]);
 			exit(errno);
 		}
 		dup2(fd, STDIN_FILENO);
 		free(fullpath);
+		fullpath = NULL;
 	}
 	n = _start_prompt(arglist[0], &p_count);
 	return (n);

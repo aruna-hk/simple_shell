@@ -68,6 +68,7 @@ int delete_node(ALIAS **head, unsigned int index);
 char *check_if_alias(char *cmd);
 
 
+
 char *name_(char *name);
 char *full_path(char *s_name, int flag);
 char *get_f_path(char *a_path);
@@ -75,7 +76,7 @@ char *search_path(char *name);
 char *get_dir(char *shorthand_name, int flag, int *id);
 
 
-
+ char *line_clean(char *line);
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);
 void comma_cmds(char **line, int *p_count, char *name);
 int create_child(char **arr, int *p_count, char *name, int *c_id, int p_ret);

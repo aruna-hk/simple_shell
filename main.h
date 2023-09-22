@@ -117,4 +117,5 @@ int _start_prompt(char *name, int *p_count);
 char *set_home(void);
 void freeLinkedList(CMD **head);
 char **dtokenizer(char *str, const char *del);
+void p_e_error(char *name, int p_no, char **il_no);
 #endif

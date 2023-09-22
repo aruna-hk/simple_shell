@@ -59,7 +59,7 @@ int main(int args, char **arglist)
 {
 	int open_home, p_count = 0, fd, n;
 	char **homeset;
-	char *full_path;
+	char *file;
 	char *homedir = set_home();
 
 	if (homedir != NULL)
@@ -77,7 +77,7 @@ int main(int args, char **arglist)
 	}
 	if (args >= 2)
 	{
-		full_path = get_f_path(arglist[1], FILE_FLAG);
+		file = full_path(arglist[0], FILE_FLAG)
 		fd = open(full_path, O_RDONLY);
 		if (fd == -1)
 		{

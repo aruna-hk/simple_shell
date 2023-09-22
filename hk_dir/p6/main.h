@@ -73,7 +73,7 @@ char *full_path(char *s_name, int flag);
 char *get_f_path(char *a_path);
 char *search_path(char *name);
 char *get_dir(char *shorthand_name, int flag, int *id);
-
+void freegrid(char **arr);
 
 
 ssize_t _getline(char **store, size_t *n_read, FILE *ptr);
@@ -83,6 +83,7 @@ char *_strtok(char *string, const char *delim);
 int (*get_built_in(char *s))(char **, char *, int);
 int _printenv(char **arr, char *sh_name, int p_count);
 int _setenv(char **arr, char *p_name, int p_count);
+char *search_path(char *name);
 int change_dir(char **arr, char *p_name, int p_count);
 
 /**
@@ -111,8 +112,7 @@ int child_n_exit(char *name, char *line, int *n);
 char **arr_strings(CMD **ptr);
 int _exit_(char *name, char *string);
 size_t list_len(const CMD *h);
-char **tokenizer(char *string, const char *delimiter);
-
+char **tokenizer(char *str, const char *del);
 int _start_prompt(char *name, int *p_count);
 char *set_home(void);
 void freeLinkedList(CMD **head);

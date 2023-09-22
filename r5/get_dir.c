@@ -1,23 +1,5 @@
 #include "main.h"
 /**
-* ss - reduce length of get_dir
-* @name: name passed to getdir
-* @p: int pointer
-* Return: path
-*/
-char *ss(char *name, int *p)
-{
-	char *ret = malloc(strlen(name) + 2);
-
-	ret[0] = '\0';
-
-	*p = 1;
-
-	strcpy(ret, "/");
-	strcat(ret, name);
-	return (ret);
-}
-/**
 * get_dir - get directory to which the file is located
 * @shorthand_name: name given
 * @flag: cmd/file flag
@@ -26,8 +8,7 @@ char *ss(char *name, int *p)
 */
 char *get_dir(char *shorthand_name, int flag, int *id)
 {
-	char *sh_cpy, *tok, *pwd = getenv("PWD");
-	int len;
+	char *sh_cpy, *tok, *ret, *pwd = getenv("PWD");
 
 	if (*shorthand_name == '/')
 	{
@@ -35,7 +16,16 @@ char *get_dir(char *shorthand_name, int flag, int *id)
 		return (shorthand_name);
 	}
 	if (pwd == NULL)
-		return (ss(shorthand_name, id));
+	{
+		*id = 1;
+		ret = malloc(strlen(shorthand_name) + 2);
+		if (ret != NULL)
+		{
+			ret[0] = '/';
+			strcpy(ret + 1, shorthand_name);
+		}
+		return (ret);
+	}
 	sh_cpy = strdup(shorthand_name);
 	tok = strtok(sh_cpy, "/");
 	if (strcmp(tok, shorthand_name) == 0 && flag == CMD_FLAG)
@@ -48,7 +38,7 @@ char *get_dir(char *shorthand_name, int flag, int *id)
 	{
 		if (strcmp(tok, P_PWD) == 0)
 		{
-			len = strlen(pwd) - 1;
+			int len = strlen(pwd) - 1;
 			while (len >= 0)
 			{
 				if (pwd[len] == '/')

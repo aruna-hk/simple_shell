@@ -10,9 +10,7 @@
 int execute_line(char *p_name, char *f_path, char **arglist, int p_count)
 {
 	int sig, status;
-	pid_t process;
-
-	process = fork();
+	pid_t process = fork();
 
 	if (process != 0)
 	{
@@ -27,11 +25,8 @@ int execute_line(char *p_name, char *f_path, char **arglist, int p_count)
 	{
 		if (execve(f_path, arglist, environ) == -1)
 		{
-			if (errno != 13)
-				errno = 2;
 			err_mesg(p_name, p_count, arglist[0], errno);
-			freegrid(arglist);
-			exit(127);
+			exit(errno);
 		}
 	else
 		exit(EXIT_SUCCESS);
