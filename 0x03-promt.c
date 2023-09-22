@@ -10,7 +10,7 @@ int exit_no(char *num)
 
 	while (num[i] != '\0')
 	{
-		if ((int)num[i] < 48 || (int)num[i] > 57)
+		if ((int)num[i] < 48 || (int)num[i] > 57 || (int)num[i] == 45)
 			return (-1);
 		i++;
 	}
