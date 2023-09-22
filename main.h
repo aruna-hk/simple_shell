@@ -59,6 +59,7 @@ char *remov_comment(char **line);
 int logic(char *name, char *line, int *p_no, int *b_in);
 void and_operator(char *line, char *name, int *pcount);
 void check_or(char *linei, char *name, int *pcount);
+ssize_t _getline(char **store, size_t *n_read, FILE *ptr);
 
 int chec_if_del(char c, const char *del);
 char *_strtok(char *str, const char *del);

@@ -7,7 +7,7 @@
 * @ptr: file stream
 * Return: -1 --failure/ number of characters read
 */
-ssize_t getline(char **store, size_t *n_read, FILE *ptr)
+ssize_t _getline(char **store, size_t *n_read, FILE *ptr)
 {
 	ssize_t nn_read;
 	char *rr_buffer;
@@ -44,14 +44,4 @@ ssize_t getline(char **store, size_t *n_read, FILE *ptr)
 	}
 	free(rr_buffer);
 	return (-1);
-}
-int main()
-{
-	char *line = NULL;
-	ssize_t rread;
-	size_t nread;
-
-	rread = getline(&line, &nread, stdin);
-	dprintf(STDOUT_FILENO, "%s", line);
-	free(line);
 }

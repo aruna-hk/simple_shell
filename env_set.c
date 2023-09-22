@@ -12,7 +12,7 @@ int _setenv(char **arr, char *p_name, int p_count)
 	char *err_del = ": ";
 	char *usage = "setenv VARIABLE VALUE";
 
-	if (arr[1] == NULL|| arr[2] == NULL)
+	if (arr[1] == NULL || arr[2] == NULL)
 	{
 		num = print_number(p_count);
 		write(2, p_name, strlen(p_name));
