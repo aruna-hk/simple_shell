@@ -10,6 +10,7 @@ int (*get_built_in(char *s))(char **, char *, int)
 	int i = 0;
 
 	built_ins cmds[] = {
+		{"setenv", _setenv},
 		{"cd",  change_dir},
 		{"env", _printenv},
 		{'\0', NULL},
