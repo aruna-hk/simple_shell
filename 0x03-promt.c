@@ -10,7 +10,7 @@ int exit_no(char *num)
 
 	while (num[i] != '\0')
 	{
-		if ((int)num[i] < 48 || (int)num[i] > 57 || (int)num[i] == 45)
+		if (((int)num[i] < 48 || (int)num[i] > 57) || num[i] == '-')
 			return (-1);
 		i++;
 	}
@@ -63,14 +63,15 @@ int child_exit(char *name, char **line, int *child_id, int *p_count)
 		else
 		{
 			exit_number = exit_no(arr[1]);
-			freegrid(arr);
 			if (exit_number == -1)
 			{
 				p_e_error(name, (*p_count)++, arr);
+				freegrid(arr);
 				return (0);
 			}
 			else
 			{
+				freegrid(arr);
 				if (*child_id != 0)
 					(*child_id)--;
 				exit(exit_number);
