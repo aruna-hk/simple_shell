@@ -46,8 +46,7 @@ void fork_child(int *child_id, int *p_count)
 * Return: exit number or 0
 */
 int child_exit(char *name, char **line, int *child_id, int *p_count)
-{
-	int exit_number;
+{	int exit_number;
 	char **arr = dtokenizer(*line, " ");
 
 	if (strcmp(arr[0], "exit") == 0)
@@ -57,7 +56,8 @@ int child_exit(char *name, char **line, int *child_id, int *p_count)
 		if (arr[1] == NULL)
 		{
 			freegrid(arr);
-			if (*child_id != 0) (*child_id)--;
+			if (*child_id != 0)
+				(*child_id)--;
 			exit(0);
 		}
 		else
@@ -71,7 +71,8 @@ int child_exit(char *name, char **line, int *child_id, int *p_count)
 			}
 			else
 			{
-				if (*child_id != 0) (*child_id)--;
+				if (*child_id != 0)
+					(*child_id)--;
 				exit(exit_number);
 			}
 		}
