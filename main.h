@@ -20,6 +20,8 @@
 #define PWD_FLAG 3
 #define HOME "/home"
 #define NO_CMD ": not found\n"
+#define P_STRING "$ "
+#define C_STRING " ($) "
 
 #define NEWL "\n"
 extern char **environ;
@@ -112,6 +114,8 @@ char **arr_strings(CMD **ptr);
 int _exit_(char *name, char *string);
 size_t list_len(const CMD *h);
 char **tokenizer(char *string, const char *delimiter);
+
+int env_set(char *env, char *value);
 
 int _start_prompt(char *name, int *p_count);
 char *set_home(void);

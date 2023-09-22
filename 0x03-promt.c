@@ -98,7 +98,7 @@ int _start_prompt(char *name, int *p_count)
 {
 	ssize_t nread;
 	size_t r_read;
-	char *p_string, *first_s, *line_, *line = NULL;
+	char *first_s, *line_, *line = NULL;
 	int child_id = 0, n = 0, b_in = 0;
 
 	while (1)
@@ -106,10 +106,9 @@ int _start_prompt(char *name, int *p_count)
 		if (isatty(STDIN_FILENO))
 		{
 			if (child_id == 0)
-				p_string = "$ ";
+				write(1, P_STRING, strlen(P_STRING));
 			else
-				p_string = " ($) ";
-			write(1, p_string, strlen(p_string));
+				write(1, C_STRING, strlen(C_STRING));
 		}
 		nread = getline(&line, &r_read, stdin);
 		if (nread == EOF)
@@ -119,7 +118,7 @@ int _start_prompt(char *name, int *p_count)
 				write(1, NEWL, strlen(NEWL));
 			break;
 		}
-		line[nread - 1 ] = '\0';
+		line[nread - 1] = '\0';
 		line_ = line;
 		while (*line_ == ' ')
 			line_++;
