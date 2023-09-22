@@ -41,8 +41,8 @@ int main(int args, char **arglist, char **envp)
 	environ = envp;
 	if (args >= 2)
 	{
-		if (*arglist[1] = '/')
-			full_path = strdup(arglist[0]);
+		if (*arglist[1] == '/')
+			fullpath = strdup(arglist[0]);
 		else
 			fullpath = full_path(arglist[1], FILE_FLAG);
 		fd = open(fullpath, O_RDONLY);
